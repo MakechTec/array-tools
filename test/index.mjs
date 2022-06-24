@@ -19,7 +19,7 @@ let elements = [
     },
 ];
 
-let grouped = ArrayTools.by(elements, (element) => {
+let grouped = ArrayTools.group(elements, (element) => {
     return element.name.substring(0, 2);
 });
 

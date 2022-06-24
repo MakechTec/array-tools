@@ -1,6 +1,6 @@
 
 export const ArrayTools = {
-    by: (inputArray: Array<any>, predicated: Function) => {
+    group: (inputArray: Array<any>, predicated: Function) => {
 
         let pointers = inputArray.map((item: any, index: number) => {
             return {
