@@ -5,6 +5,10 @@
   "directories": {
     "test": "test"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MakechTec/array-tools.git"
+  },
   "devDependencies": {},
   "scripts": {
     "compile": "tsc && terser prebuild/ArrayTools.js --output index.js",
