@@ -1,0 +1,16 @@
+{
+  "name": "@makechtec/array-tools",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "compile": "tsc && terser prebuild/ArrayTools.js --output index.js",
+    "test": "node test/index.mjs"
+  },
+  "author": "makechtec",
+  "license": "MIT",
+  "description": ""
+}
