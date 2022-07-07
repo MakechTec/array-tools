@@ -1,6 +1,10 @@
 {
   "name": "@makechtec/array-tools",
   "version": "1.0.1",
+  "keywords": [
+    "array",
+    "grouping"
+  ],
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -16,5 +20,5 @@
   },
   "author": "makechtec",
   "license": "MIT",
-  "description": ""
+  "description": "array grouping elements by a string returned as criterial"
 }
