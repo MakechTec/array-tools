@@ -1,11 +1,11 @@
 
 import {ArrayCollection} from "../array_collection/ArrayCollection";
 import {SortingTool} from "../organization/sorting/SortingTool";
-import {Collection} from "../organization/Collection";
+import {Collection} from "../collection/Collection";
 import {Comparator, EQUALS, LESS} from "../organization/sorting/Comparator";
 
 export class BubbleSorting<T> implements SortingTool<T> {
-    sortByCriterial(collection: Collection<T>, comparator: Comparator<T>): Collection<T> {
+    sort(collection: Collection<T>, comparator: Comparator<T>): Collection<T> {
 
         const arrayCollection: ArrayCollection<T> = ArrayCollection.fromCollection(collection);
 

@@ -1,7 +1,5 @@
 
-import {BubbleSorting} from "../../../index";
-import {ArrayCollection, Collection, SortingTool} from "../../../index";
-import {Comparator} from "../../../index";
+import {BubbleSorting, ArrayCollection, Collection, SortingTool, Comparator} from "../../../index";
 
 it("test sorting by criterial", async () => {
     const nameSorter: SortingTool<string> = new BubbleSorting<string>();
@@ -14,7 +12,7 @@ it("test sorting by criterial", async () => {
         }
     };
 
-    const result: Collection<string> = nameSorter.sortByCriterial(names, nameComparator);
+    const result: Collection<string> = nameSorter.sort(names, nameComparator);
 
     expect(result).toStrictEqual(ArrayCollection.fromArray(["Angel", "Charles", "Jhon"]));
 

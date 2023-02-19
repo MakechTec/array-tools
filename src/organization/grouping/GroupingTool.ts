@@ -1,4 +1,4 @@
-import { Collection } from "./Collection";
+import { Collection } from "../../collection/Collection";
 import { Criterial } from "./Criterial";
 
 export type GroupingTool<T, K> = {

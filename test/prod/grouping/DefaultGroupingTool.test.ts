@@ -1,8 +1,8 @@
-import {ArrayCollection, Collection, DefaultGroupingTool} from "../../../index";
+import {ArrayCollection, Collection, DefaultGroupingTool, GroupingTool} from "../../../index";
 
 it("test groupByCriterial", async () => {
 
-    const organizer: DefaultGroupingTool<string, string> = new DefaultGroupingTool();
+    const organizer: GroupingTool<string, string> = new DefaultGroupingTool();
 
     const noGrouped: Collection<string> = new ArrayCollection([ "a", "b", "c", "a", "b", "c"]);
 

@@ -1,6 +1,6 @@
-import { Collection } from "../organization/Collection";
-import { Criterial } from "../organization/Criterial";
-import { GroupingTool } from "../organization/GroupingTool";
+import { Collection } from "../collection/Collection";
+import { Criterial } from "../organization/grouping/Criterial";
+import { GroupingTool } from "../organization/grouping/GroupingTool";
 import {ArrayCollection} from "../array_collection/ArrayCollection";
 
 export class DefaultGroupingTool<T, K> implements GroupingTool<T, K>{

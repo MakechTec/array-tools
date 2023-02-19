@@ -1,4 +1,4 @@
-import { Collection } from "../organization/Collection";
+import { Collection } from "../collection/Collection";
 import {Stream} from "../streaming/Stream";
 
 export class ArrayCollection<T> implements Collection<T>, Stream<T>{

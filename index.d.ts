@@ -6,6 +6,14 @@ export type Collection<T> = {
     toArray: () => T[];
     getCopy(): Collection<T>;
 
+    size(): number;
+
+    get(index: number): T;
+
+    set(index:number, value: T): void;
+
+    add(value: T): void;
+
 };
 
 export type Stream<T> = {
@@ -24,7 +32,7 @@ export type GroupingTool<T, K> = {
 
 export type SortingTool<T> = {
 
-    sortByCriterial: (collection: Collection<T>, comparator: Comparator<T>) => Collection<T>;
+    sort: (collection: Collection<T>, comparator: Comparator<T>) => Collection<T>;
 
 };
 
@@ -46,13 +54,15 @@ export declare class ArrayCollection<T> implements Collection<T>, Stream<T>{
     mapTo<K>(callback: (item: T, index: number) => K): ArrayCollection<K>;
     getCopy(): ArrayCollection<T>;
 
-    public size(): number;
+    forEach(callback: (item: T, index: number) => void): void;
 
-    public get(index: number): T;
+    size(): number;
 
-    public set(index:number, value: T): void;
+    get(index: number): T;
 
-    public add(value: T): void;
+    set(index:number, value: T): void;
+
+    add(value: T): void;
 
     public static fromArray<T>(items: T[]): ArrayCollection<T>;
 
