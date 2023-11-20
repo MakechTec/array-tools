@@ -224,3 +224,8 @@ Same as map for Array.prototype.forEach.
     mapTo: <K>(callback: (item: T, index: number) => K) => Stream<K>;
 
 Same as map for Array.prototype.map but when we return a different value than the original.
+
+
+## UnmodifiableCollection ##
+
+## Deque ##
