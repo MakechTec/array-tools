@@ -1,7 +1,10 @@
 
 export type Collection<T> = {
+    
     distinct: () => Collection<T>;
+
     toArray: () => T[];
+
     getCopy(): Collection<T>;
 
     size(): number;

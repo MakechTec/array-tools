@@ -14,12 +14,17 @@ Is an interface that contains the following methods:
 
     distinct: () => Collection<T>;
 
-Compare the elements in the collection, and returns the same collection reference. 
-This method changes the current collection items.
+Returns a new collection with unique elements like:
+
+    const numbers = new ArrayCollection<number>([1,2,2,3,3]);
+    const uniqueNumbers = numbers.distinct();
+
+    console.log(uniqueNumbers); // prints [1,2,3]
+
 
     toArray: () => T[];
 
-Returns an array containing a copy of the collection elements.
+Returns an array containing a copy of collection elements.
 
     getCopy(): Collection<T>;
 
@@ -27,27 +32,27 @@ Clone the current collection and returns a new instance.
 
     size(): number;
 
-Returns the collection length.
+Returns collection length.
 
     get(index: number): T;
 
-Get the element at the given index.
+Gets element at given index.
 
     set(index: number, value: T): void;
 
-Replaces the element at the given index with the given value.
+Replaces the element at given index with given value.
 
     add(value: T): void;
 
-Add the given value to the collection.
+Add the given value to collection.
 
 
 ## Grouping: ##
 
-The DefaultGroupingTool groups the elements inside the given collection in arrays, the value returned by the given function
-is used to identify the similar elements.
+Calls DefaultGroupingTool to group elements inside a given collection, the value returned by given function
+is used to identify the similar elements. By example:
 
-    import {ArrayCollection, Collection, DefaultGroupingTool, GroupingTool} from "../../../index";
+    import {ArrayCollection, Collection, DefaultGroupingTool, GroupingTool} from "@makechtec/array-tools";
 
     const organizer: GroupingTool<string, string> = new DefaultGroupingTool();
 
@@ -65,23 +70,86 @@ The result is:
         ["c", "c"] 
     ]
 
+First argument is datatype for collection, second argument is datataye for each function result. Let's look it up by dealing objects:
+
+in __./types.ts__ file we got:
+
+    export type EventListenerPointer = {
+        eventName: string;
+        eventListener: EventListener;
+    };
+
+Then in another file:
+
+    import {ArrayCollection, Collection, DefaultGroupingTool, GroupingTool} from "@makechtec/array-tools";
+    import {EventListenerPointer} from "./types";
+
+    const pointers: EventListenerPointer[] = [
+        {
+            eventName: "click",
+            eventListener: (ev) => console.log("clicked!!");
+        },
+        {
+            eventName: "hover",
+            eventListener: (ev) => console.log("hover!!");
+        },
+        {
+            eventName: "click",
+            eventListener: (ev) => console.log("clicked!!");
+        },
+        {
+            eventName: "hover",
+            eventListener: (ev) => console.log("hover!!");
+        }
+    ];
+
+    const organizer: GroupingTool<EventListenerPointer, string> = new DefaultGroupingTool();
+
+    const collection: Collection<EventListenerPointer> = new ArrayCollection(pointers);
+
+    const groupedCollection: Collection<EventListenerPointer> = 
+        organizer.groupByCriterial(collection, pointer => pointer.eventName);
+
+    console.log(groupedCollection.toArray());
+
+    //will print
+
+    [
+        [
+            {
+                eventName: "click",
+                eventListener: (ev) => console.log("clicked!!");
+            },
+            {
+                eventName: "click",
+                eventListener: (ev) => console.log("clicked!!");
+            }
+        ],
+        [
+            {
+                eventName: "hover",
+                eventListener: (ev) => console.log("hover!!");
+            },
+            {
+                eventName: "hover",
+                eventListener: (ev) => console.log("hover!!");
+            }
+        ]
+    ]
+
+
 ## Sorting ##
 
-First we create a new sorter, the default type that we cat find in the array-tools module 
-is a simple bubble sorter algorithm. 
+You can use default bubble sorter or create custome one, by implementing SortingTool<T> interface then, we create a new Comparator implementation, this will tell sorter, what element is considered with major value. 
 
-Then we prepare our collection to be sorted.
+- If first element is greater than second, comparator must returns 1.
 
-After, we create a new Comparator implementation, this tells the sorter, what element is
-considered with the major value. 
+- If first element is less than second, comparator must returns -1.
 
-If the first element is greater than the second, then the comparator must returns 1.
+- If first element is equal to second, comparator must returns 0.
 
-If the first element is less than the second, then the comparator must returns -1.
+With all components ready we can call sortByCriterial method, passing collection and comparator.
 
-If the first element is equal to the second, then the comparator must returns 0.
-
-With all components ready whe call the sortByCriterial method, passing the collection and the comparator.
 
     import {BubbleSorting, ArrayCollection, Collection, SortingTool, Comparator} from "@makechtec/array-tools";
 
@@ -105,8 +173,7 @@ The result is:
 
 ## ArrayCollection ##
 
-This is an implementation of Collection and Stream, it tries to add more functionality to
-native Array type.
+This is an implementation of Collection and Stream, it will add more functionality to native Array type.
 
 Methods inherited from Collection interface:
 
@@ -144,7 +211,7 @@ Create a new ArrayCollection with the given collection.
 
 ## Stream ##
 
-It is an interface that tries to copy the native array javascript API. Only for development purposes.
+This interface tries to copy native array javascript API. Only for development purposes.
 
     map: (callback: (item: T, index: number) => T) => Stream<T>;
 

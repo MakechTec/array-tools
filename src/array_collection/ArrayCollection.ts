@@ -7,7 +7,7 @@ export class ArrayCollection<T> implements Collection<T>, Stream<T>{
 
     public distinct(): ArrayCollection<T>{
         this.items = this.items.filter((item, index, self) => self.indexOf(item) === index);
-        return this;
+        return this.getCopy();
     }
 
     public map(callback: (item: T, index: number) => T): ArrayCollection<T>{
